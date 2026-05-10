@@ -1,58 +1,75 @@
-# Enhance Coding - Premium Freelancer Collective
+# React + TypeScript + Vite
 
-A modern, premium homepage for a freelancer collective / remote agency platform. Built with React, Tailwind CSS, and Framer Motion.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **Antigravity Hero**: Interactive floating cards representing team members.
-- **Sticky Scroll Section**: Dynamic image transitions paired with scrolling content for workflow explanation.
-- **Filterable Team Grid**: Explore the collective by category with smooth layout animations.
-- **Interactive Team Builder**: Visual concept for building custom teams with real-time rate estimates.
-- **Overlapping Card Stack**: Scrolling feature highlights with a layered stacking effect.
-- **Premium Design**: Minimalist white background, bold typography (Inter/Outfit), and smooth transitions.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Tech Stack
+## React Compiler
 
-- **React** (Vite)
-- **Tailwind CSS** (Styling)
-- **Framer Motion** (Animations)
-- **Lucide React** (Icons)
+The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-## Getting Started
+Note: This will impact Vite dev & build performances.
 
-1. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+## Expanding the ESLint configuration
 
-2. **Run dev server**:
-   ```bash
-   npm run dev
-   ```
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-3. **Build for production**:
-   ```bash
-   npm run build
-   ```
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## Structure
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-```text
-/src
-  /components
-    Header.jsx
-    Hero.jsx
-    About.jsx
-    StickyScrollSection.jsx
-    Portfolio.jsx
-    Team.jsx
-    OverlappingBoxes.jsx
-    HireTeamInteractive.jsx
-    Testimonials.jsx
-    FAQ.jsx
-    InquiryForm.jsx
-    Footer.jsx
-  App.jsx
-  main.jsx
-  index.css
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
