@@ -1,6 +1,21 @@
 import { motion } from 'framer-motion'
 
-const FloatingCard = ({ member, index, speed, delay, rotate }) => {
+interface Member {
+  name: string
+  role: string
+  avatar: string
+  availability: string
+}
+
+interface FloatingCardProps {
+  member: Member
+  index: number
+  speed: number
+  delay: number
+  rotate: number
+}
+
+const FloatingCard = ({ member, index, speed, delay, rotate }: FloatingCardProps) => {
   return (
     <motion.div
       initial={{ y: 0, opacity: 0 }}
