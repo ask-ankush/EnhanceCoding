@@ -25,7 +25,7 @@ const FooterMain = () => {
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:text-black transition-colors border border-slate-100"
                             >
-                                <Icon size={18} />
+                                <div></div>
                             </motion.a>
                         ))}
                     </div>
