@@ -18,7 +18,7 @@ const FooterMain = () => {
                         A distributed collective of high-end independent designers and developers building the future of digital products.
                     </p>
                     <div className="flex space-x-6">
-                        {[].map((Icon, idx) => (
+                        {[].map((idx) => (
                             <motion.a
                                 key={idx}
                                 href="#"
